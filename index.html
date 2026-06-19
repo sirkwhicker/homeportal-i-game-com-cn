@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>爱游戏 · 杂志专题介绍</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f7f4eb;
+            font-family: 'Georgia', 'Times New Roman', 'Noto Serif SC', serif;
+            color: #2c2c2c;
+            line-height: 1.7;
+            padding: 0 1.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .magazine {
+            max-width: 820px;
+            width: 100%;
+            background: rgba(255, 252, 245, 0.85);
+            backdrop-filter: blur(1px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+            border-radius: 32px;
+            margin-top: 2.2rem;
+            padding: 2.8rem 2.5rem 2.5rem;
+            transition: padding 0.2s;
+        }
+        @media (max-width: 560px) {
+            .magazine { padding: 1.8rem 1.4rem 1.8rem; }
+        }
+
+        /* 首页横幅 — 杂志式跨栏 */
+        .hero-banner {
+            background: #eae5d9;
+            border-radius: 56px 56px 24px 24px;
+            padding: 1.8rem 2.2rem 1.5rem;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            position: relative;
+            box-shadow: inset 0 1px 0 rgba(255,255,245,0.6), 0 6px 12px rgba(0,0,0,0.02);
+        }
+        .hero-banner h1 {
+            font-size: 2.8rem;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            color: #2f2b24;
+            line-height: 1.2;
+            margin-bottom: 0.2rem;
+        }
+        .hero-banner h1 small {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #6f675a;
+            display: block;
+            margin-top: 0.2rem;
+            letter-spacing: 0.2em;
+        }
+        .hero-banner .byline {
+            font-size: 0.9rem;
+            color: #7c7566;
+            border-top: 1px dashed #cbc3b2;
+            display: inline-block;
+            padding-top: 0.6rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* 背景说明 / 引言块 */
+        .context-box {
+            background: #f1ede3;
+            border-left: 6px solid #b9ad93;
+            padding: 1.4rem 1.8rem;
+            border-radius: 0 20px 20px 0;
+            margin-bottom: 2.2rem;
+            font-size: 1rem;
+            color: #3f3a30;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .context-box p {
+            margin-bottom: 0.5rem;
+        }
+        .context-box p:last-child { margin-bottom: 0; }
+        .context-box strong {
+            color: #3d3527;
+            font-weight: 600;
+        }
+
+        /* 三段自然介绍 — 文章式排版 */
+        .feature-article {
+            margin-bottom: 2.2rem;
+        }
+        .feature-article h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            border-bottom: 1px solid #dad2c0;
+            padding-bottom: 0.4rem;
+            margin-bottom: 1rem;
+            color: #3b352b;
+            letter-spacing: 0.03em;
+        }
+        .feature-article h2 i {
+            font-style: normal;
+            background: #cfc6b2;
+            color: #2c261e;
+            padding: 0 0.6rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-right: 0.4rem;
+        }
+        .feature-article p {
+            margin-bottom: 1rem;
+            text-indent: 2em;
+        }
+        .feature-article p:last-of-type {
+            margin-bottom: 0;
+        }
+        .feature-article .inset-quote {
+            background: #f9f6ee;
+            padding: 1rem 1.6rem;
+            margin: 1.2rem 0 0.8rem;
+            border-radius: 40px 12px 40px 12px;
+            font-style: italic;
+            color: #5a5242;
+            border: 1px solid #e0d9ca;
+            font-size: 0.95rem;
+            text-indent: 0;
+        }
+        .feature-article .inset-quote::before {
+            content: "❝ ";
+            font-size: 1.3rem;
+            color: #a99b82;
+        }
+
+        /* 提示框 — 跟页尾呼应 */
+        .notice-card {
+            background: #f0ebdf;
+            border-radius: 30px;
+            padding: 1.2rem 1.8rem;
+            margin: 2rem 0 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            border: 1px solid #d8cfbb;
+        }
+        .notice-card .icon {
+            font-size: 1.8rem;
+            line-height: 1;
+            color: #877b64;
+        }
+        .notice-card .text {
+            flex: 1;
+        }
+        .notice-card .text p {
+            margin-bottom: 0.3rem;
+        }
+        .notice-card .text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 页尾访问提示 */
+        .footer-visit {
+            margin-top: 2rem;
+            padding: 1.2rem 0 0.2rem;
+            border-top: 2px dotted #cfc6b2;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #4f483b;
+        }
+        .footer-visit a {
+            color: #3b352b;
+            text-decoration: none;
+            font-weight: 600;
+            background: linear-gradient(to right, #b9ad93, #b9ad93) no-repeat 0 100%;
+            background-size: 100% 2px;
+            transition: background-size 0.2s, color 0.2s;
+            padding: 0 0.1rem;
+        }
+        .footer-visit a:hover {
+            background-size: 100% 100%;
+            color: #f7f4eb;
+        }
+
+        .footer-visit .faq-hint {
+            display: inline-block;
+            background: #e5ddce;
+            border-radius: 40px;
+            padding: 0.1rem 1rem;
+            font-size: 0.8rem;
+            color: #4a4235;
+            margin-top: 0.5rem;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #dad2c0;
+            margin: 2rem 0 0.8rem;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 480px) {
+            .hero-banner h1 { font-size: 2rem; }
+            .hero-banner h1 small { font-size: 1rem; }
+            .feature-article h2 { font-size: 1.3rem; }
+            .notice-card { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+<div class="magazine">
+    <!-- 首页横幅 -->
+    <div class="hero-banner">
+        <h1>爱游戏<small>· 游戏生活志</small></h1>
+        <div class="byline">专题 · 从站点说起</div>
+    </div>
+
+    <!-- 背景说明：站点介绍与可信说明 -->
+    <div class="context-box">
+        <p><strong>关于这个站点</strong> —— 它不是一个商业门户，也不是排行榜或交易平台。它是一个以「游戏体验与日常记录」为脉络的个人风格站点，内容围绕游戏文化、生活观察与轻评测展开。站内信息均基于作者的实际体验与公开资料整理，不涉及诱导充值、虚假宣传或未授权转载。</p>
+        <p>站点内容偏向自然叙述，不堆砌术语，也不刻意制造焦虑。如果你对游戏本身、以及游戏如何融入日常话题感兴趣，<strong>这里或许能带给你一点不同角度的启发</strong>。</p>
+    </div>
+
+    <!-- 三段自然介绍 -->
+    <div class="feature-article">
+        <h2><i>01</i> 不只是游戏库</h2>
+        <p>很多人第一次点开 <a href="https://homeportal-i-game.com.cn" style="color:#3d3527;text-decoration: underline wavy #b9ad93 1px;text-underline-offset:3px;">爱游戏</a> 时，会以为它是一个单纯的游戏合辑页面。实际上，这里的文章更倾向于把游戏当作一种生活介质——比如某次长途旅行中随身携带的掌机，或是周末午后与朋友联机的短暂瞬间。这些记录既不追求攻略的详尽，也不刻意煽情，更像是坐下来翻翻旧杂志的闲谈。</p>
+        <p>站点的更新节奏并不快，但每篇都会保留一点作者当时的触感。你可能会看到某个经典关卡的设计拆解，也可能只是一段关于配乐的氛围描写。没有排行榜，不搞抽奖，也不鼓励熬夜刷分——这也是站点从一开始就保持的风格。</p>
+    </div>
+
+    <div class="feature-article">
+        <h2><i>02</i> 关于可信与调性</h2>
+        <p>网络上的游戏信息往往真假混杂，尤其是那些带着诱导链接的内容。而 <a href="https://homeportal-i-game.com.cn" style="color:#3d3527;font-weight:500;text-decoration:none;border-bottom:2px solid #cfc6b2;">爱游戏</a> 从一开始就划定了一条边界：不接商业推广软文，不参与任何形式的刷量或水军行为。每一篇关于作品的描述，都会尽量标注版本与体验日期，如果涉及传闻或未确认信息，也会明确说明。</p>
+        <p>有些朋友问为什么站点设计得这么“素”，连广告位都没留。其实很简单——这里更像一个数字笔记本，而不是流量生意。保持干净，是对阅读者最基本的尊重。当然，如果你觉得某篇文章有偏差，也欢迎通过站内线索联系作者讨论。</p>
+        <div class="inset-quote">“玩游戏本身就是一件很私人的事，而记录可以把它变成温和的分享。”</div>
+    </div>
+
+    <div class="feature-article">
+        <h2><i>03</i> 适合什么样的读者</h2>
+        <p>如果你已经厌倦了“必玩清单”和“全网最全攻略”，只想找一个能安静读点游戏相关文字的地方，那爱游戏可能会合你的胃口。这里不追热点，也不制造对立，偶尔聊聊老游戏的冷知识，或者复盘某个被低估的独立作品。</p>
+        <p>阅读门槛很低——你不必是硬核玩家，甚至不一定要玩游戏。站里不少文章都在探讨游戏叙事如何影响现实情绪，或者像素画面下的美学逻辑。哪怕只是随手翻翻，也能找到一点共鸣。毕竟，<a href="https://homeportal-i-game.com.cn" style="color:#3d3527;text-decoration:none;border-bottom:1px dashed #a99b82;">爱游戏</a> 这三个字的核心，始终是“喜欢”而已。</p>
+    </div>
+
+    <!-- 提示框 -->
+    <div class="notice-card">
+        <div class="icon">📌</div>
+        <div class="text">
+            <p><strong>一点提醒</strong>：本站所有内容均为作者独立撰写，不构成购买建议或投资参考。游戏版本与平台信息请以官方渠道为准。</p>
+            <p>如果你在别处看到以“爱游戏”名义发布的诱导链接，那大概率是冒充的。认准域名 homeportal-i-game.com.cn 就好。</p>
+        </div>
+    </div>
+
+    <!-- 页尾访问提示 + 隐含FAQ摘要 -->
+    <div class="footer-visit">
+        <p>想从头翻翻这些关于游戏的记录？可以直接前往 <a href="https://homeportal-i-game.com.cn">爱游戏</a> 的主页，没有弹窗也没有注册要求。</p>
+        <p style="margin-top:0.6rem; font-size:0.9rem;">常见问题摘要：站点是否更新？—— 不定期，但每篇都保留温度。<br>能否转载？—— 非商用转载注明出处即可，商用请先联系。</p>
+        <div class="faq-hint">📖 游戏 · 生活 · 闲谈</div>
+    </div>
+
+    <!-- 极小装饰，无实际链接 -->
+    <hr>
+    <div style="text-align:right; font-size:0.75rem; color:#9c9381; letter-spacing:0.1em; opacity:0.5; margin-top:0.3rem;">· 专题 · 自然叙述 ·</div>
+</div>
+</body>
+</html>
