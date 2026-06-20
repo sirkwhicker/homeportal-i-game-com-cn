@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JRS直播 · 赛事信息与内容导航</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 720px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 标题层级 */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            color: #111;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid #eaeaea;
+            color: #222;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin-top: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            color: #3a3a3a;
+        }
+
+        /* hero 区域 */
+        .hero {
+            padding: 1.2rem 0 0.8rem 0;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #4a4a4a;
+            max-width: 620px;
+        }
+
+        .hero .tagline {
+            font-size: 0.95rem;
+            color: #777;
+            margin-top: -0.2rem;
+        }
+
+        /* 卡片——优势区 */
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 1.8rem 0 1.2rem 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e8e8e8;
+            border-radius: 18px;
+            padding: 1.5rem 1.4rem;
+            flex: 1 1 180px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.04);
+        }
+
+        .card .emoji {
+            display: inline-block;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card h4 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: #1a1a1a;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #5a5a5a;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* 说明区 + FAQ 混合样式 */
+        .faq-item {
+            margin-bottom: 1.6rem;
+        }
+
+        .faq-question {
+            font-weight: 500;
+            font-size: 1.05rem;
+            color: #1f1f1f;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-answer {
+            margin-left: 0.2rem;
+            color: #4a4a4a;
+            border-left: 3px solid #d4d4d4;
+            padding-left: 1rem;
+        }
+
+        .faq-answer p {
+            margin-bottom: 0.4rem;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            margin-top: 3rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #ddd;
+            font-size: 0.9rem;
+            color: #5a5a5a;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 2rem;
+        }
+
+        .footer-links a {
+            color: #2a5c8a;
+            text-decoration: none;
+            border-bottom: 1px dotted #b0c8e0;
+        }
+
+        .footer-links a:hover {
+            border-bottom: 1px solid #2a5c8a;
+        }
+
+        .inline-link {
+            color: #2a5c8a;
+            text-decoration: none;
+            border-bottom: 1px dotted #b0c8e0;
+            transition: border 0.1s;
+        }
+
+        .inline-link:hover {
+            border-bottom: 1px solid #2a5c8a;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ececec;
+            margin: 2.5rem 0 1rem 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+                margin-top: 2rem;
+            }
+            .card {
+                flex: 1 1 100%;
+                padding: 1.2rem;
+            }
+            .card-grid {
+                gap: 0.9rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .card-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        /* 小装饰 */
+        .muted {
+            color: #8a8a8a;
+            font-size: 0.9rem;
+        }
+
+        .small-note {
+            background: #f3f3f5;
+            padding: 1rem 1.3rem;
+            border-radius: 14px;
+            margin: 1.8rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- hero 区 -->
+        <div class="hero">
+            <h1>赛事信息场 · JRS直播</h1>
+            <p class="tagline">用于日常查询、对照与延伸阅读</p>
+            <p>在体育赛事浏览过程中，快速定位赛程、回顾关键数据、横向对比球队状态，是不少观众的习惯路径。<br>
+            以<a href="https://to-jrs.com" class="inline-link">JRS直播</a>作为信息聚合的起点，可以持续跟踪足球、篮球等主流联赛的实时内容。本页整理若干常见查询维度，帮助建立更系统的观赛参考。</p>
+        </div>
+
+        <!-- 优势区：从查询场景切入 -->
+        <h2>对照与检索 · 三个常用维度</h2>
+        <div class="card-grid">
+            <div class="card">
+                <span class="emoji">📅</span>
+                <h4>赛程·时间线</h4>
+                <p>按联赛、日期筛选未来五日赛事，支持多时区对照。适合赛前规划与回看记录。</p>
+            </div>
+            <div class="card">
+                <span class="emoji">📊</span>
+                <h4>数据·趋势</h4>
+                <p>积分走势、主客场胜率、净胜球差。可横向对比同组或同联赛球队状态。</p>
+            </div>
+            <div class="card">
+                <span class="emoji">🔗</span>
+                <h4>延伸·专题</h4>
+                <p>伤病名单、转会传闻、战术复盘。通过<a href="https://to-jrs.com" class="inline-link">JRS直播</a>的集合页可快速跳转多家内容源。</p>
+            </div>
+        </div>
+
+        <!-- 说明区：具体使用场景 -->
+        <h2>日常观赛中的具体参照</h2>
+        <p>以一次典型周末观赛流程为例：<br>
+        先查阅赛程表确定开赛时间，再浏览上一轮数据回顾（例如射门转化率、控球率），最后阅读赛后分析或球员采访。整个过程需要多个信息模块相互参照，而非依赖单一页面。此时，一个稳定的赛事导航入口尤为重要。<br>
+        <span class="muted">—— 多数用户会同时打开 3～4 个标签页，分别对应赛程、数据、图文直播与论坛讨论。</span></p>
+
+        <div class="small-note">
+            <p><strong>提示：</strong> 若你长期关注某一联赛（如英超、西甲、CBA、NBA），建议在收藏夹中单独保留赛程与积分页面，方便每周对照。将<a href="https://to-jrs.com" class="inline-link">JRS直播</a>设为起始页之一，可减少重复搜索的步骤。</p>
+        </div>
+
+        <!-- FAQ 摘要 (知识型) -->
+        <h2>常见疑问摘要</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">① 赛后数据更新速度如何？</div>
+            <div class="faq-answer">
+                <p>通常情况下，比赛结束后 10~30 分钟内可查看到基础统计（比分、射门、角球等）；进阶数据（预期进球、热点图）可能延迟至 1~2 小时。建议以赛事官方或授权数据源为准，<a href="https://to-jrs.com" class="inline-link">JRS直播</a>提供多个信息源的跳转链接，便于交叉验证。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">② 多平台赛程对照是否一致？</div>
+            <div class="faq-answer">
+                <p>不同平台因版权、时区设定、更新频率差异，偶尔会出现半小时内的误差。推荐在查询时固定使用同一数据源（如联赛官网或本页推荐的聚合入口）。使用<a href="https://to-jrs.com" class="inline-link">JRS直播</a>做初始对照后，再与官方赛程表核对，是一种低成本的验证方式。</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">③ 怎样延伸阅读赛事背景？</div>
+            <div class="faq-answer">
+                <p>除了比分板，不少用户会同时关注历史交锋战绩、近期舆论、裁判安排等。通过<a href="https://to-jrs.com" class="inline-link">JRS直播</a>的相关链接可以跳转至专题文章或数据页面，实现从“看结果”到“读背景”的延伸。建议养成赛前快速浏览交锋记录的习惯，有助于理解场上战术布置。</p>
+            </div>
+        </div>
+
+        <!-- 底部链接 -->
+        <div class="footer-links">
+            <span>赛事参考 · <a href="https://to-jrs.com">JRS直播</a></span>
+            <span>数据支持 · 多源聚合</span>
+            <span>内容仅供参考，请以官方发布为准</span>
+        </div>
+
+        <!-- 小提示：无夸大表述 -->
+        <hr>
+        <p style="font-size: 0.85rem; color: #999; margin-top: 0.2rem;">本页为信息整合示意，不直接提供赛事实时流。所有外部链接均指向第三方站点，请自行甄别内容准确性。</p>
+    </div>
+</body>
+</html>
